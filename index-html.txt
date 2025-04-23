@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roblox Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #111;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    header {
+      background: #222;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 2rem;
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+    nav a:hover {
+      color: #0ff;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .item {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    /* Hover-Animation wieder hinzugefügt */
+    .item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 255, 255, 0.2);
+    }
+    .item h3 {
+      margin-top: 0;
+    }
+    .buy-button {
+      display: inline-block;
+      margin-top: 1rem;
+      background: #0ff;
+      color: #000;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .buy-button:hover {
+      background: #0cc;
+    }
+    section {
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+    }
+    section.visible {
+      opacity: 1;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+      color: #0ff;
+    }
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      display: none;
+    }
+    .spinner {
+      border: 6px solid #222;
+      border-top: 6px solid #0ff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="loader"><div class="spinner"></div></div>
+
+  <header>
+    <div><a onclick="scrollToTop()" style="color: white; text-decoration: none; cursor: pointer;"><strong>Roblox Shop</strong></a></div>
+    <nav>
+      <a onclick="scrollToTop()">Home</a>
+      <a href="#bundles">Bundles</a>
+    </nav>
+  </header>
+
+  <div id="top"></div>
+
+  <section id="items" class="container visible">
+    <div class="item">
+      <h3>Roblox GFX</h3>
+      <p>Bei Dem kauf werde ich ihnen einen Roblox GFX Mit ihrem Skin Anfertigen!</p>
+      <p><strong>Preis:</strong> 75 Robux</p>
+      <a href="https://www.roblox.com/de/game-pass/1175977551/GFX-Kauf" class="buy-button" onclick="delayedRedirect(event, this)">Kaufen</a>
+    </div>
+    <div class="item">
+      <h3>Game Icon + Thumbnail</h3>
+      <p>Bei Diesem Produkt erhalten sie 1 Game icon und 3 Thumbnails!</p>
+      <p><strong>Preis:</strong> 100 Robux</p>
+      <a href="https://www.roblox.com/de/game-pass/1171720924/Game-Icon-Thumbnail" class="buy-button" onclick="delayedRedirect(event, this)">Kaufen</a>
+    </div>
+    <div class="item">
+      <h3>Game Comfort</h3>
+      <p>Bei dem Produkt erhalten sie eine Costum Roblox Obby mit einem Shop mit einem Spielpass und ein ladescreen!</p>
+      <p><strong>Preis:</strong> 199 Robux</p>
+      <a href="https://www.roblox.com/de/game-pass/1173217374/Game-Comfort" class="buy-button" onclick="delayedRedirect(event, this)">Kaufen</a>
+    </div>
+    <div class="item">
+      <h3>Perfect Game</h3>
+      <p>Bei diesem Produkt erhalten sie eine Roblox Obby mit 3 Spielpässen 1 icon 3 thumbnail einen ladescreen! Dazu ist dieses Game Besser als Das Comfort Game das heißt bessere models bessere grafik bessere stages und mehr...</p>
+      <p><strong>Preis:</strong> 299 Robux</p>
+      <a href="https://www.roblox.com/de/game-pass/1172024656/Perfect-Game" class="buy-button" onclick="delayedRedirect(event, this)">Kaufen</a>
+    </div>
+    <div class="item">
+      <h3>Game Deluxe</h3>
+      <p>Bei dem Game Deluxe haben sie freie wahl sie bekommen ein spiel es kann aber eine obby sein oder auch ein Tycoon oder was anderes!</p>
+      <p><strong>Preis:</strong> 499 Robux</p>
+      <a href="https://www.roblox.com/de/game-pass/1177387234/Deluxe-Game" class="buy-button" onclick="delayedRedirect(event, this)">Kaufen</a>
+    </div>
+  </section>
+
+  <div class="section-title" id="bundles">Bundles</div>
+
+  <section class="container">
+    <div class="item">
+      <h3>Owner Bundle</h3>
+      <p>Bei dem Owner Bunde erhalten sie 3 Game Icons 6 Game Thumbnail dazu 1 mal Das Game Deluxe Product und ein selbst gemachtes shirt für sie!</p>
+      <p><strong>Preis:</strong> 799 Robux</p>
+      <a href="https://www.roblox.com/de/game-pass/1174639021/Owner-Bundle" class="buy-button" onclick="delayedRedirect(event, this)">Kaufen</a>
+    </div>
+    <div class="item">
+      <h3>OP Bundle</h3>
+      <p>Bei dem OP Bundle Erhalten sie 3 GFX 1 Game Deluxe Produkt und 1 Game Comfort Product dazu bekommen sie 5 game icons und 10 Game Thumbnail!</p>
+      <p><strong>Preis:</strong> 999 Robux</p>
+      <a href="https://www.roblox.com/de/game-pass/1176529513/OP-Bundle" class="buy-button" onclick="delayedRedirect(event, this)">Kaufen</a>
+    </div>
+    <div class="item">
+      <h3>Mega Ersteller Bundle</h3>
+      <p>Bei dem Mega Bundle erhalten sie  mal das Deluxe Bundle dazu 5 GFX Dazu ganze 15 Game Icons und 15 Game Thumbnail als special Bekommen die einen Game Trailer!</p>
+      <p><strong>Preis:</strong> 1.299 Robux</p>
+      <a href="https://www.roblox.com/de/game-pass/1172284488/Mega-Ersteller-Bundle" class="buy-button" onclick="delayedRedirect(event, this)">Kaufen</a>
+    </div>
+    <div class="item">
+      <h3>Icon Bundle</h3>
+      <p>Bei dem Icon Bundle Bekommen sie 1 Game Trailer 5 GFX 3 Game Icons und 5 Game Thumbnail</p>
+      <p><strong>Preis:</strong> 249 Robux</p>
+      <a href="https://www.roblox.com/de/game-pass/1176893320/Icon-Bundle" class="buy-button" onclick="delayedRedirect(event, this)">Kaufen</a>
+    </div>
+    <div class="item">
+      <h3>Starter Bundle</h3>
+      <p>Bei dem Starter Bundle bekommen sie 1 GFX 1 Game Icon 1 Perfect Game Product 3 Game Thumbnail!</p>
+      <p><strong>Preis:</strong> 299 Robux</p>
+      <a href="https://www.roblox.com/de/game-pass/1177407182/Starter-Bundle" class="buy-button" onclick="delayedRedirect(event, this)">Kaufen</a>
+    </div>
+  </section>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(section => observer.observe(section));
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function delayedRedirect(event, el) {
+      event.preventDefault();
+      const loader = document.getElementById('loader');
+      loader.style.display = 'flex';
+      setTimeout(() => {
+        window.location.href = el.href;
+      }, 2000);
+    }
+
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      loader.style.display = 'flex';
+      setTimeout(() => loader.style.display = 'none', 2000);
+    });
+  </script>
+</body>
+</html>
